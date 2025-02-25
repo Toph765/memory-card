@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react'
+import './App.css';
+import Card from './components/Card'; 
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [pokeList, setPokeList] = useState([]);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const s = () => {
+        console.log(pokeList)
+    }
+    
+    const genRandomIds = () => {
+        const ids = [];
+
+        while (ids.length < 18) {
+            let number = Math.floor((Math.random() * 1025) + 1);
+            if (ids.includes(number)) continue;
+            ids.push(number);
+        }
+
+        return ids;
+    }
+
+    useEffect(() => {
+        const list = genRandomIds();
+        let controller = new AbortController();
+        console.log('list', list);
+
+        const getPokeImgs = async () => {
+            try {
+                for (let i = 0; i < list.length; i++) {
+                    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${list[i]}/`, {signal: controller.signal});
+                    const src = await response.json();
+                    const img = await src.sprites.front_default;
+                    const name = await src.name;
+                    setPokeList(prevPoke => [...prevPoke, {
+                        id: list[i],
+                        name: name,
+                        img: img,
+                    }])
+                }
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+
+        getPokeImgs();
+        
+        return () => {
+            controller?.abort();
+        }
+    }, []);
+
+    return (
+        <>
+            <button onClick={s}>S</button>
+            <Card pokeList={pokeList} />
+        </>
+    )
 }
 
-export default App
+export default App;
