@@ -24,7 +24,6 @@ function App() {
     useEffect(() => {
         const list = genRandomIds();
         let controller = new AbortController();
-        console.log('list', list);
 
         const getPokeImgs = async () => {
             try {
@@ -52,10 +51,21 @@ function App() {
         }
     }, []);
 
+    const shuffleCard = () => {
+        const list = [...pokeList];
+
+        for (let i = list.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [list[i], list[j]] = [list[j], list[i]];
+        }
+
+        setPokeList(list);
+    }
+
     return (
         <>
-            <button onClick={s}>S</button>
-            <Card pokeList={pokeList} />
+            <button onClick={shuffleCard}>S</button>
+            <Card pokeList={pokeList} click={shuffleCard} />
         </>
     )
 }
