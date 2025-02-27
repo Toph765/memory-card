@@ -7,12 +7,8 @@ function App() {
     const [pokeList, setPokeList] = useState([]);
     const [selected, setSelected] = useState([]);
     const [score, setScore] = useState(0);
-    const [highScore, setHighScore] = useState(0);;
+    const [highScore, setHighScore] = useState(0);
 
-    const s = () => {
-        console.log(selected)
-    }
-    
     const genRandomIds = () => {
         const ids = [];
 
@@ -97,7 +93,6 @@ function App() {
 
     return (
         <>
-            <button onClick={s}>S</button>
             <ScoreBoard score={score} highScore={highScore} />
             <Board pokeList={pokeList} click={handleClick} />
         </>
