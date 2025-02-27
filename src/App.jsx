@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react'
 import './App.css';
 import Card from './components/Card'; 
+import ScoreBoard from './components/ScoreBoard';
 
 function App() {
     const [pokeList, setPokeList] = useState([]);
+    const [selected, setSelected] = useState([]);
+    const [score, setScore] = useState(0);
+    const [highScore, setHighScore] = useState(0);;
 
     const s = () => {
-        console.log(pokeList)
+        console.log(selected)
     }
     
     const genRandomIds = () => {
@@ -62,10 +66,36 @@ function App() {
         setPokeList(list);
     }
 
+    const selectPoke = (name) => {
+        const list = [...selected];
+        const poke = list.filter(item => item === name);
+        const currScore = score;
+        const currHighScore = highScore;
+        
+        if (poke.length === 0) {
+            setSelected(prevItem => [...prevItem, name]);
+            setScore(currScore + 1);
+        } else {
+            setSelected([]);
+            setScore(0);
+            changeHighScore(currScore, currHighScore);
+        };
+    }
+
+    const changeHighScore = (a, b) => {
+        (a > b) ? setHighScore(a) : setHighScore(b);
+    }
+
+    const handleClick = (name) => {
+        shuffleCard();
+        selectPoke(name);
+    }
+
     return (
         <>
-            <button onClick={shuffleCard}>S</button>
-            <Card pokeList={pokeList} click={shuffleCard} />
+            <button onClick={s}>S</button>
+            <ScoreBoard score={score} highScore={highScore} />
+            <Card pokeList={pokeList} click={handleClick} />
         </>
     )
 }
