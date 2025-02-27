@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css';
-import Card from './components/Card'; 
+import Board from './components/Board'; 
 import ScoreBoard from './components/ScoreBoard';
 
 function App() {
@@ -99,7 +99,7 @@ function App() {
         <>
             <button onClick={s}>S</button>
             <ScoreBoard score={score} highScore={highScore} />
-            <Card pokeList={pokeList} click={handleClick} />
+            <Board pokeList={pokeList} click={handleClick} />
         </>
     )
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Card({ pokeList, click }) {
+function Board({ pokeList, click }) {
     const [isHidden, setIsHidden] = useState(true);
 
     const handleCheckBox = (e) => {
@@ -29,4 +29,4 @@ function Card({ pokeList, click }) {
     )
 }
 
-export default Card;
+export default Board;
