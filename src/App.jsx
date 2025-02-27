@@ -28,6 +28,7 @@ function App() {
     useEffect(() => {
         const list = genRandomIds();
         let controller = new AbortController();
+        const currScore = score % list.length;
 
         const getPokeImgs = async () => {
             try {
@@ -48,12 +49,15 @@ function App() {
             }
         }
 
-        getPokeImgs();
+        if (currScore === 0) {
+            setPokeList([]);
+            getPokeImgs();
+        };
         
         return () => {
             controller?.abort();
         }
-    }, []);
+    }, [score]);
 
     const shuffleCard = () => {
         const list = [...pokeList];
