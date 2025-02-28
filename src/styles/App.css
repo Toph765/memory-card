@@ -1,0 +1,54 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 2rem 0.6rem 2rem;
+}
+
+.scoreBoard {
+  text-align: end;
+  gap: 6px;
+}
+
+main {
+  padding-top: 2rem;
+}
+
+.checkbox {
+  text-align: end;
+  padding: 0.6rem 2rem;
+}
+
+.poke {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+  padding: 0.6rem 2rem 2rem 2rem;
+}
+
+figure {
+  position: relative;
+  height: 110px;
+}
+
+figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+footer {
+  padding: 2rem;
+}
+
+ol {
+  list-style-position: inside;
+}
+
+ul {
+  padding-left: 18px;
+}
+
+li {
+  padding-bottom: 4px;
+}
