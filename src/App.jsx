@@ -101,7 +101,7 @@ function App() {
                 <Board pokeList={pokeList} click={handleClick} />
             </main>
             <footer>
-                <h2>instructions</h2>
+                <h2>Instructions</h2>
                 <ol type='1'>
                     <li>Earn scores by clicking the pokemon ONCE.</li>
                     <li>The board will reset if:</li>
