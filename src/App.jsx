@@ -93,8 +93,24 @@ function App() {
 
     return (
         <>
-            <ScoreBoard score={score} highScore={highScore} />
-            <Board pokeList={pokeList} click={handleClick} />
+            <header>
+                <h1>Pokemon Shuffle!</h1>
+                <ScoreBoard score={score} highScore={highScore} />
+            </header>
+            <main>
+                <Board pokeList={pokeList} click={handleClick} />
+            </main>
+            <footer>
+                <h2>instructions</h2>
+                <ol type='1'>
+                    <li>Earn scores by clicking the pokemon ONCE.</li>
+                    <li>The board will reset if:</li>
+                    <ul>
+                        <li>You clicked a pokemon TWICE.</li>
+                        <li>You clicked all of the pokemon on the board.</li>
+                    </ul>
+                </ol>
+            </footer>
         </>
     )
 }
