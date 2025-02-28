@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './App.css';
+import './styles/App.css';
 import Board from './components/Board'; 
 import ScoreBoard from './components/ScoreBoard';
 
