@@ -1,6 +1,6 @@
 const ScoreBoard = ({score, highScore}) => {
     return (
-        <div>
+        <div className="scoreBoard">
             <div>{"Score: " + score}</div>
             <div>{"High Score: " + highScore}</div>
         </div>

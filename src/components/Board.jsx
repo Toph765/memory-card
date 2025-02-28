@@ -10,7 +10,7 @@ function Board({ pokeList, click }) {
 
     return (
         <div>
-            <div>
+            <div className="checkbox">
                 <input type="checkbox" onChange={handleCheckBox} id="caption" />
                 <label htmlFor="caption">Show pokemon names</label>
             </div>
