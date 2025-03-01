@@ -8,3 +8,12 @@ body {
   background-image: url('./assets/vecteezy_pattern-pokeball-red-and-white-ball-of-the-popular-cartoon_24649105.jpg');
   background-size: cover;
 }
+
+button {
+  border-style: none;
+  background-color: #FFF0BD;
+}
+
+button:hover {
+  background-color: #fade81;
+}
