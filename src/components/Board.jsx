@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Board({ pokeList, click }) {
+function Board({ pokeList, click, boardIsHidden}) {
     const [isHidden, setIsHidden] = useState(true);
 
     const handleCheckBox = (e) => {
@@ -9,7 +9,7 @@ function Board({ pokeList, click }) {
     } 
 
     return (
-        <div>
+        <div  hidden={boardIsHidden}>
             <div className="checkbox">
                 <input type="checkbox" onChange={handleCheckBox} id="caption" />
                 <label htmlFor="caption">Show pokemon names</label>

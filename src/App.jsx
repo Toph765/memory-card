@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react'
 import './styles/App.css';
 import Board from './components/Board'; 
 import ScoreBoard from './components/ScoreBoard';
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
     const [pokeList, setPokeList] = useState([]);
     const [selected, setSelected] = useState([]);
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
+    const [loadIsHidden, setLoadIsHidden] = useState(false);
+    const [boardIsHidden, setBoardIsHidden] = useState(true);
 
     const genRandomIds = () => {
         const ids = [];
@@ -28,17 +31,19 @@ function App() {
 
         const getPokeImgs = async () => {
             try {
+                const temp = [];
                 for (let i = 0; i < list.length; i++) {
                     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${list[i]}/`, {signal: controller.signal});
                     const src = await response.json();
                     const img = await src.sprites.front_default;
                     const name = await src.name;
-                    setPokeList(prevPoke => [...prevPoke, {
+                    temp.push({
                         id: list[i],
                         name: name,
                         img: img,
-                    }])
+                    });
                 }
+                setPokeList(temp);
             }
             catch (error) {
                 console.log(error);
@@ -54,6 +59,16 @@ function App() {
             controller?.abort();
         }
     }, [score]);
+
+    useEffect(() => {
+        if (pokeList.length === 18) {
+            setBoardIsHidden(false);
+            setLoadIsHidden(true);
+        } else {
+            setBoardIsHidden(true);
+            setLoadIsHidden(false);
+        }
+    }, [pokeList]);
 
     const shuffleCard = () => {
         const list = [...pokeList];
@@ -98,7 +113,8 @@ function App() {
                 <ScoreBoard score={score} highScore={highScore} />
             </header>
             <main>
-                <Board pokeList={pokeList} click={handleClick} />
+                <LoadingScreen isHidden={loadIsHidden} />
+                <Board pokeList={pokeList} click={handleClick} boardIsHidden={boardIsHidden}/>
             </main>
             <footer>
                 <h2>Instructions</h2>
