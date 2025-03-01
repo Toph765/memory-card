@@ -4,6 +4,7 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 2rem 2rem 0.6rem 2rem;
+  background-color: rgba(245, 245, 245, 0.60);
 }
 
 h1 {
@@ -55,6 +56,7 @@ figcaption {
 footer {
   padding: 2rem;
   font-family: "Outfit", serif;
+  background-color: rgba(245, 245, 245, 0.60);
 }
 
 h2 {
