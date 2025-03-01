@@ -24,6 +24,11 @@ main {
   font-family: "Outfit", serif;
 }
 
+.load {
+  text-align: center;
+  font-size: 2.4rem;
+}
+
 .checkbox {
   text-align: end;
   padding: 0.6rem 2rem;
